@@ -1,1 +1,2 @@
-Hello World!
+<?php
+echo getHelloWorld();
