@@ -6,6 +6,7 @@ function getHelloWorld() {
 
 function mbs_register_post_type() {
 	register_post_type( 'book', [
+	    'has_archive' => true,
 		'labels' => [
 			'name'               => '책',
 			'singular_name'      => '책',
