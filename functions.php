@@ -1,9 +1,4 @@
 <?php
-function getHelloWorld() {
-	return '<h1>Hello World!</h1>';
-}
-
-
 function mbs_register_post_type() {
 	register_post_type( 'book', [
 	    'has_archive' => true,
@@ -32,3 +27,13 @@ function mbs_register_post_type() {
 }
 
 add_action( 'init', 'mbs_register_post_type' );
+
+
+add_action( 'wp_enqueue_scripts', function () {
+    wp_enqueue_style( 'mbs-style', get_stylesheet_uri() );
+} );
+
+add_action( 'after_setup_theme', function () {
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'automatic-feed-links' );
+} );
