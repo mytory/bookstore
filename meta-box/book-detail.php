@@ -37,5 +37,12 @@
                pattern="[0-9]+" title="숫자로만 적어 주세요">
     </td>
 </tr>
+<tr>
+    <th><label for="isbn">ISBN</label></th>
+    <td>
+        <input type="text" name="meta[isbn]" id="isbn" class="regular-text"
+               value="<?= esc_attr(get_post_meta(get_the_ID(), 'isbn', true)) ?>">
+    </td>
+</tr>
 </tbody>
 </table>

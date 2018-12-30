@@ -11,7 +11,15 @@ add_action('add_meta_boxes_book', function () {
 add_action('edit_form_advanced', function () {
 
     if (get_current_screen()->post_type === 'book') {
+
         include 'meta-box/book-toc.php';
+
+        include 'meta-box/book-author-intro.php';
+
+        include 'meta-box/book-translator-intro.php';
+
+
+
     }
 
 });

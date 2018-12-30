@@ -5,7 +5,7 @@
 
     <div class="inside">
         <?php
-        $meta_toc = esc_attr(get_post_meta(get_the_ID(), 'toc', true));
+        $meta_toc = get_post_meta(get_the_ID(), 'toc', true);
         wp_editor($meta_toc, 'book_toc', [
             'textarea_name' => 'meta[toc]',
         ]);
