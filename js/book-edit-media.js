@@ -1,4 +1,10 @@
 (function () {
+
+    function renderCover(attachment) {
+        var imgEl = '<img src="' + attachment.sizes.medium.url + '"/>';
+        document.querySelector('.js-book-cover-thumbnail').innerHTML = imgEl;
+    }
+
     var media = wp.media({
         title: '표지를 선택해 주세요',
         library: {
@@ -19,12 +25,17 @@
             .first()
             .toJSON();
 
-        var imgEl = '<img src="' + attachment.sizes.medium.url + '"/>';
-
-        document.querySelector('.js-book-cover-thumbnail').innerHTML = imgEl;
+        renderCover(attachment);
 
         document.querySelector('[name="meta[cover_id]"]').value = attachment.id;
 
     });
+
+    if (document.querySelector('[name="meta[cover_id]"]').value) {
+        wp.media.attachment(document.querySelector('[name="meta[cover_id]"]').value)
+            .fetch()
+            .then(renderCover);
+    }
+
 
 }());
