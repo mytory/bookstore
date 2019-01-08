@@ -1,8 +1,10 @@
 (function () {
 
-    function renderCover(attachment) {
+    function renderCoverAndShowRemoveButton(attachment) {
         var imgEl = '<img src="' + attachment.sizes.medium.url + '"/>';
         document.querySelector('.js-book-cover-thumbnail').innerHTML = imgEl;
+
+        document.querySelector('.js-remove-book-cover').style.display = 'inline-block';
     }
 
     var media = wp.media({
@@ -25,7 +27,7 @@
             .first()
             .toJSON();
 
-        renderCover(attachment);
+        renderCoverAndShowRemoveButton(attachment);
 
         document.querySelector('[name="meta[cover_id]"]').value = attachment.id;
 
@@ -34,8 +36,14 @@
     if (document.querySelector('[name="meta[cover_id]"]').value) {
         wp.media.attachment(document.querySelector('[name="meta[cover_id]"]').value)
             .fetch()
-            .then(renderCover);
+            .then(renderCoverAndShowRemoveButton);
     }
+
+    document.querySelector('.js-remove-book-cover').addEventListener('click', function () {
+        document.querySelector('[name="meta[cover_id]"]').value = '';
+        document.querySelector('.js-book-cover-thumbnail').innerHTML = '';
+        this.style.display = 'none';
+    });
 
 
 }());
