@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+.post-type-book .wp-list-table {
+    table-layout: auto;
+}
+
+.post-type-book .column-cover {
+    width: 110px;
+}
+
+.post-type-book .column-title {
+    min-width: 200px;
+}
+
+
+@media screen and (max-width: 782px) {
+    .post-type-book .column-cover {
+        display: none!important;
+    }
+
+    .post-type-book .column-cover img {
+        padding-left: 32%;
+    }
+}
+
+

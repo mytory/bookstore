@@ -13,4 +13,14 @@ add_action('admin_enqueue_scripts', function () {
         );
     }
 
+
+
+
+    wp_enqueue_style(
+        'mytory-bookstore-admin',
+        get_template_directory_uri() . '/admin.css',
+        array(),
+        1.1
+    );
+
 });
