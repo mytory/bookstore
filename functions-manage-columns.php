@@ -29,7 +29,7 @@ add_action('manage_book_posts_custom_column', function ($column, $post_id) {
                 break;
             }
 
-            echo "<img src='{$url}'>";
+            echo "<img src='{$url}' height='150'>";
 
             break;
     }
