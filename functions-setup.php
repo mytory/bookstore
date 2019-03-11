@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Seoul');
+
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'mbs-style', get_stylesheet_uri() );
 } );
