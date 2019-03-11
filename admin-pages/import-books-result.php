@@ -17,6 +17,7 @@
                 <th scope="col">저자</th>
                 <th scope="col">출판사</th>
                 <th scope="col">발행일</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +29,11 @@
                     <td><?= implode(', ', $book->authors) ?></td>
                     <td><?= $book->publisher ?></td>
                     <td nowrap><?= date('Y-m-d', strtotime($book->datetime)) ?></td>
+                    <td nowrap>
+                        <button class="button  js-import" data-book="<?= base64_encode(json_encode($book)) ?>">
+                            임포트
+                        </button>
+                    </td>
                 </tr>
             <?php } ?>
             </tbody>

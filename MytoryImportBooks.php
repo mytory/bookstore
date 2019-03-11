@@ -6,6 +6,8 @@ class MytoryImportBooks
     function __construct()
     {
         add_action('admin_menu', [$this, 'addMenu']);
+        add_action('admin_enqueue_scripts', [$this, 'scripts']);
+        add_action('wp_ajax_import_books', [$this, 'import']);
     }
 
     public function addMenu()
@@ -36,6 +38,7 @@ class MytoryImportBooks
         $headers = wp_remote_retrieve_headers($response);
         $body = json_decode(wp_remote_retrieve_body($response));
 
+        include get_template_directory() . '/admin-pages/import-books-form.php';
         include get_template_directory() . '/admin-pages/import-books-result.php';
     }
 
@@ -57,7 +60,35 @@ class MytoryImportBooks
         return wp_remote_get($url . $query_string, $args);
     }
 
+    public function scripts()
+    {
+        $current_screen = get_current_screen();
 
+        if ($current_screen->id === 'book_page_import-books') {
+            wp_enqueue_script(
+                'import-books',
+                get_template_directory_uri() . '/js/import-books.js',
+                ['jquery'],
+                '1.0',
+                true
+            );
+        }
+    }
+
+    public function import()
+    {
+        $book = json_decode(base64_decode($_POST['base64EncodedBook']));
+
+        // book을 insert하면 된다.
+
+        $result = [
+            'result' => 1,
+            'message' => $book->title . ' 입력 완료.',
+        ];
+
+        echo json_encode($result);
+        die();
+    }
 }
 
 new MytoryImportBooks();
