@@ -7,7 +7,7 @@ add_action('admin_menu', function () {
         'publish_posts',
         'import-books',
         function () {
-            echo '책 가져오기 페이지';
+            include get_template_directory() . '/admin-pages/import-books.php';
         }
     );
 });
