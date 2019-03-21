@@ -90,9 +90,10 @@ class MytoryImportBooks
                 $this->insertTranslators($post_id, $book);
             }
 
-
-
             // 표지를 임포트.
+            if (!empty($book->thumbnail)) {
+                $this->insertCover($post_id, $book);
+            }
 
             $response = [
                 'result' => 'success',
@@ -172,6 +173,33 @@ class MytoryImportBooks
             throw new Exception('책 입력중 에러. ' . $wp_error->get_error_code() . ': ' . $wp_error->get_error_message());
         }
         return $post_id;
+    }
+
+    /**
+     * @param $post_id
+     * @param $book
+     * @throws Exception
+     */
+    private function insertCover($post_id, $book)
+    {
+        try {
+            $parsed = parse_url($book->thumbnail);
+
+            // $parsed['query'] is like fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038
+            parse_str($parsed['query'], $query);
+            if (!empty($query['fname'])) {
+                $cover_url = $query['fname'];
+            } else {
+                $cover_url = $book->thumbnail;
+            }
+
+
+            $attachment_id = crb_insert_attachment_from_url($cover_url, "{$book->isbn}.jpg", $post_id);
+            update_post_meta($post_id, 'cover_id', $attachment_id);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
     }
 }
 
