@@ -7,5 +7,14 @@ jQuery('.js-import').click(function () {
         base64EncodedBook: base64EncodedBook,
     }, function (response) {
         console.log(response);
+
+        if (response.result === 'success') {
+            alert(response.message);
+        }
+
+        if (response.result === 'fail') {
+            alert(response.message);
+        }
+
     }, 'json');
 });

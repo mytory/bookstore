@@ -79,14 +79,37 @@ class MytoryImportBooks
     {
         $book = json_decode(base64_decode($_POST['base64EncodedBook']));
 
-        // book을 insert하면 된다.
+        try {
+            // book을 insert하면 된다.
+            $post_id = wp_insert_post([
+                'post_title' => $book->title,
+                'post_content' => $book->contents,
+                'post_status' => 'publish', // private
+                'post_type' => 'book',
+            ], true);
 
-        $result = [
-            'result' => 1,
-            'message' => $book->title . ' 입력 완료.',
-        ];
+            if (is_wp_error($post_id)) {
+                $wp_error = $post_id;
+                throw new Exception($wp_error->get_error_message());
+            }
 
-        echo json_encode($result);
+            // 저자, 역자 지정.
+            // 표지를 임포트.
+
+            $response = [
+                'result' => 'success',
+                'message' => $book->title . ' 입력 완료.',
+            ];
+
+        } catch (\Exception $e) {
+            $response = [
+                'result' => 'fail',
+                'message' => $e->getMessage(),
+            ];
+        }
+
+
+        echo json_encode($response);
         die();
     }
 }
