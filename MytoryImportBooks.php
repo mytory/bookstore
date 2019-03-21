@@ -80,20 +80,18 @@ class MytoryImportBooks
         $book = json_decode(base64_decode($_POST['base64EncodedBook']));
 
         try {
-            // book을 insert하면 된다.
-            $post_id = wp_insert_post([
-                'post_title' => $book->title,
-                'post_content' => $book->contents,
-                'post_status' => 'publish', // private
-                'post_type' => 'book',
-            ], true);
+            $post_id = $this->insertBook($book);
 
-            if (is_wp_error($post_id)) {
-                $wp_error = $post_id;
-                throw new Exception($wp_error->get_error_message());
+            if (!empty($book->authors)) {
+                $this->insertAuthors($post_id, $book);
             }
 
-            // 저자, 역자 지정.
+            if (!empty($book->translators)) {
+                $this->insertTranslators($post_id, $book);
+            }
+
+
+
             // 표지를 임포트.
 
             $response = [
@@ -108,9 +106,72 @@ class MytoryImportBooks
             ];
         }
 
-
         echo json_encode($response);
         die();
+    }
+
+    /**
+     * @param $post_id
+     * @param $book
+     * @return array|false|WP_Error
+     * @throws Exception
+     */
+    private function insertAuthors($post_id, $book)
+    {
+        $result = wp_set_post_terms($post_id, $book->authors, 'book_author', true);
+
+        if ($result === false) {
+            throw new Exception('저자 입력중 post_id에 0이 들어왔습니다.');
+        }
+
+        if (is_wp_error($result)) {
+            $wp_error = $result;
+            throw new Exception('저자 입력중 에러. ' . $wp_error->get_error_code() . ': ' . $wp_error->get_error_message());
+        }
+        return $result;
+    }
+
+    /**
+     * @param $post_id
+     * @param $book
+     * @return array|false|WP_Error
+     * @throws Exception
+     */
+    private function insertTranslators($post_id, $book)
+    {
+        $result = wp_set_post_terms($post_id, $book->translators, 'book_translator', true);
+
+        if ($result === false) {
+            throw new Exception('역자 입력중 post_id에 0이 들어왔습니다.');
+        }
+
+        if (is_wp_error($result)) {
+            $wp_error = $result;
+            throw new Exception('역자 입력중 에러. ' . $wp_error->get_error_code() . ': ' . $wp_error->get_error_message());
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param $book
+     * @return int|WP_Error
+     * @throws Exception
+     */
+    private function insertBook($book)
+    {
+        $post_id = wp_insert_post([
+            'post_title' => $book->title,
+            'post_content' => $book->contents,
+            'post_status' => 'publish', // private
+            'post_type' => 'book',
+        ], true);
+
+        if (is_wp_error($post_id)) {
+            $wp_error = $post_id;
+            throw new Exception('책 입력중 에러. ' . $wp_error->get_error_code() . ': ' . $wp_error->get_error_message());
+        }
+        return $post_id;
     }
 }
 
