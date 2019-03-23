@@ -1,4 +1,4 @@
-jQuery('.js-import').click(function () {
+jQuery('.js-import').click(function (e) {
     var $ = jQuery,
         base64EncodedBook = $(this).data('book');
 
@@ -6,10 +6,16 @@ jQuery('.js-import').click(function () {
         action: 'import_books',
         base64EncodedBook: base64EncodedBook,
     }, function (response) {
+
         console.log(response);
 
         if (response.result === 'success') {
-            alert(response.message);
+
+            $(e.target)
+                .text('가져옴')
+                .attr('disabled', true);
+
+            // console.log(response.message);
         }
 
         if (response.result === 'fail') {

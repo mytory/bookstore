@@ -90,10 +90,11 @@ class MytoryImportBooks
                 $this->insertTranslators($post_id, $book);
             }
 
-            // 표지를 임포트.
             if (!empty($book->thumbnail)) {
                 $this->insertCover($post_id, $book);
             }
+
+            $this->insertEtc($post_id, $book);
 
             $response = [
                 'result' => 'success',
@@ -200,6 +201,13 @@ class MytoryImportBooks
             throw $e;
         }
 
+    }
+
+    private function insertEtc($post_id, $book)
+    {
+        update_post_meta($post_id, 'price', $book->price);
+        update_post_meta($post_id, 'isbn', $book->isbn);
+        update_post_meta($post_id, 'published_date', date('Y-m-d', strtotime($book->datetime)));
     }
 }
 
