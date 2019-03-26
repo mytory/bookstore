@@ -38,6 +38,8 @@ class MytoryImportBooks
         $headers = wp_remote_retrieve_headers($response);
         $body = json_decode(wp_remote_retrieve_body($response));
 
+        $body->documents = $this->markDuplications($body->documents);
+
         include get_template_directory() . '/admin-pages/import-books-form.php';
         include get_template_directory() . '/admin-pages/import-books-result.php';
     }
@@ -208,6 +210,32 @@ class MytoryImportBooks
         update_post_meta($post_id, 'price', $book->price);
         update_post_meta($post_id, 'isbn', $book->isbn);
         update_post_meta($post_id, 'published_date', date('Y-m-d', strtotime($book->datetime)));
+    }
+
+    private function markDuplications($books)
+    {
+        foreach ($books as $i => $book) {
+            // $book->isbn이 이미 들어와 있는지 확인한다.
+
+            $the_query = new WP_Query([
+                'post_type' => 'book',
+                'meta_query' => [
+                    [
+                        'key' => 'isbn',
+                        'value' => $book->isbn,
+                    ],
+                ],
+            ]);
+
+            // 들어와 있으면 $book->duplication = true
+            // 없으면 $book->duplication = false
+            $books[$i]->is_duplication = false;
+            if ($the_query->post_count) {
+                $books[$i]->is_duplication = true;
+            }
+        }
+
+        return $books;
     }
 }
 

@@ -30,9 +30,13 @@
                     <td><?= $book->publisher ?></td>
                     <td nowrap><?= date('Y-m-d', strtotime($book->datetime)) ?></td>
                     <td nowrap>
-                        <button class="button  js-import" data-book="<?= base64_encode(json_encode($book)) ?>">
-                            임포트
-                        </button>
+                        <?php if ($book->is_duplication) { ?>
+                            있음
+                        <?php } else { ?>
+                            <button class="button  js-import" data-book="<?= base64_encode(json_encode($book)) ?>">
+                                가져오기
+                            </button>
+                        <?php } ?>
                     </td>
                 </tr>
             <?php } ?>
