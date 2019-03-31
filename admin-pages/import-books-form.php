@@ -1,7 +1,10 @@
 <div class="wrap">
     <h1>책 가져오기</h1>
 
-    <form method="post">
+    <form method="get">
+        <input type="hidden" name="post_type" value="book">
+        <input type="hidden" name="page" value="import-books">
+
         <table class="form-table">
             <tbody>
             <tr>
@@ -9,15 +12,15 @@
                     <label for="query">검색어</label>
                 </th>
                 <td>
-                    <input type="text" id="query" name="query">
+                    <input type="text" id="query" name="query" value="<?= ($_GET['query']) ?? '' ?>">
                 </td>
             </tr>
             </tbody>
         </table>
 
-        <?php
-        submit_button('검색');
-        ?>
+        <p>
+            <button type="submit" class="button  button-primary">검색</button>
+        </p>
 
     </form>
 
