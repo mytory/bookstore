@@ -19,19 +19,19 @@ class MytoryImportBooks
             'publish_posts',
             'import-books',
             function () {
-                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                    include get_template_directory() . '/admin-pages/import-books-form.php';
-                }
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $this->result();
+                include get_template_directory() . '/admin-pages/import-books-form.php';
+
+                if (!empty($_GET['query'])) {
+                    $request_page = (!empty($_GET['request_page'])) ? $_GET['request_page'] : 1;
+                    $this->result($_GET['query'], $request_page);
                 }
             }
         );
     }
 
-    public function result()
+    public function result($query, $request_page)
     {
-        $response = $this->get($_POST['query']);
+        $response = $this->get($query, $request_page);
 
         $response_code = wp_remote_retrieve_response_code($response);
         $response_message = wp_remote_retrieve_response_message($response);
@@ -40,16 +40,17 @@ class MytoryImportBooks
 
         $body->documents = $this->markDuplications($body->documents);
 
-        include get_template_directory() . '/admin-pages/import-books-form.php';
         include get_template_directory() . '/admin-pages/import-books-result.php';
     }
 
 
-    public function get($query)
+    public function get($query, $page = 1)
     {
         $url = 'https://dapi.kakao.com/v3/search/book?';
         $query_string = http_build_query([
             'query' => $query,
+            'size' => 50,
+            'page' => $page,
         ]);
 
         $args = [

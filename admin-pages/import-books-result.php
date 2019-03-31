@@ -9,6 +9,10 @@
         ?>
         <h2>검색 결과</h2>
 
+
+        <p><?= number_format($body->meta->total_count) ?>개</p>
+
+
         <table class="wp-list-table  widefat  striped">
             <thead>
             <tr>
@@ -43,4 +47,24 @@
             </tbody>
         </table>
     <?php } ?>
+
+    <?php if (!$body->meta->is_end) { ?>
+        <p style="text-align: center;">
+
+            <?php if ($request_page > 1) { ?>
+                <a href="?post_type=book&page=import-books&query=<?= $_GET['query'] ?>&request_page=<?= $request_page - 1 ?>">
+                    이전 페이지</a>
+                |
+            <?php } ?>
+
+            <?php if (!$body->meta->is_end) { ?>
+                <a href="?post_type=book&page=import-books&query=<?= $_GET['query'] ?>&request_page=<?= $request_page + 1 ?>">
+                    다음 페이지
+                </a>
+            <?php } else { ?>
+                마지막 페이지
+            <?php } ?>
+        </p>
+    <?php } ?>
+
 </div>
