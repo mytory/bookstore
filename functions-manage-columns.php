@@ -8,6 +8,7 @@ add_filter('manage_book_posts_columns', function ($columns) {
         'taxonomy-book_subject' => '주제',
         'taxonomy-book_author' => '저자',
         'taxonomy-book_translator' => '역자',
+        'taxonomy-book_publisher' => '출판사',
         'date' => '일자',
     ];
 
