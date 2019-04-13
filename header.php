@@ -4,14 +4,17 @@
 </head>
 <body>
 
-<nav>
+<div>
     <?php if (function_exists('the_custom_logo')) {
         the_custom_logo();
     } ?>
 
-    <a href="<?= home_url() ?>">Mytory Bookstore</a>
-    |
-    <a href="<?= get_post_type_archive_link('book') ?>">책 목록</a>
-</nav>
-
-<hr>
+    <nav>
+        <?php
+        if (has_nav_menu('main_nav')) {
+            wp_nav_menu(['theme_location' => 'main_nav']);
+        } else { ?>
+            <p>메인 내비게이션에 메뉴를 할당해 주세요.</p>
+        <?php } ?>
+    </nav>
+</div>
