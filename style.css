@@ -17,6 +17,8 @@ html {
     line-height: 1.8;
 }
 
+
+
 a {
     color: black;
     text-decoration: none;
@@ -24,4 +26,33 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.wrapper {
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* main-navigation */
+.nav-bg {
+    background-color: #2ECC71;
+    color: white;
+}
+
+.menu-main-nav-container > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu-main-nav-container > ul > li > a {
+    display: inline-block;
+    color: inherit;
+    padding: 1em;
+}
+
+.sub-menu {
+    display: none;
 }
