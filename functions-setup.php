@@ -13,3 +13,9 @@ add_action( 'after_setup_theme', function () {
 
     add_image_size('book_cover', 300, 300, false);
 } );
+
+add_filter('upload_mimes', function ($mime_types) {
+    $mime_types['svg'] = 'image/svg+xml'; //Adding svg extension
+    $mime_types['hwp'] = 'application/x-hwp';
+    return $mime_types;
+});
