@@ -12,6 +12,10 @@ add_action( 'after_setup_theme', function () {
     add_theme_support('custom-logo');
 
     add_image_size('book_cover', 300, 300, false);
+
+    register_nav_menus( [
+        'main_nav' => '메인 내비게이션',
+    ]);
 } );
 
 add_filter('upload_mimes', function ($mime_types) {
@@ -19,3 +23,4 @@ add_filter('upload_mimes', function ($mime_types) {
     $mime_types['hwp'] = 'application/x-hwp';
     return $mime_types;
 });
+
