@@ -15,6 +15,7 @@ Mytory's Wordpress Theme Lecture Example
 html {
     font-size: 100%;
     line-height: 1.8;
+    overflow: scroll;
 }
 
 
@@ -40,11 +41,21 @@ a:hover {
     color: white;
 }
 
+.menu-main-nav-container a {
+    text-decoration: none;
+}
+
 .menu-main-nav-container > ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
+}
+
+.menu-main-nav-container > ul > li.menu-item-has-children > a:after {
+    content: " ▼";
+    font-size: 5px;
+    vertical-align: middle;
 }
 
 .menu-main-nav-container > ul > li > a {
@@ -53,6 +64,23 @@ a:hover {
     padding: 1em;
 }
 
-.sub-menu {
-    display: none;
+.menu-main-nav-container > ul > li > .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+    border: 1px solid #eee;
+    position: absolute;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s;
+    background-color: #fff;
+}
+
+.menu-main-nav-container > ul > li > .sub-menu > li > a {
+    display: inline-block;
+    padding: 0.5em 1em;
+}
+
+.menu-main-nav-container > ul > li:hover > .sub-menu {
+    transform: scaleY(1);
 }
