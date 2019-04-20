@@ -84,3 +84,16 @@ a:hover {
 .menu-main-nav-container > ul > li:hover > .sub-menu {
     transform: scaleY(1);
 }
+
+
+/* single book */
+.book-cover-container {
+    float: left;
+    margin-right: 1em;
+}
+
+
+/* utilities */
+.margin-bottom {
+    margin-bottom: 1rem;
+}

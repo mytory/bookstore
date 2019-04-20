@@ -2,7 +2,10 @@
 date_default_timezone_set('Asia/Seoul');
 
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_style( 'mbs-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'mbs-style', get_stylesheet_uri(), ['mbs-normalize']);
+    wp_enqueue_style( 'mbs-normalize',
+        "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" );
+
 } );
 
 add_action( 'after_setup_theme', function () {
