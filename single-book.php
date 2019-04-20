@@ -48,8 +48,44 @@ $meta = get_post_meta(get_the_ID());
         </div>
 
         <div>
+            <h3>책 소개</h3>
             <?php the_content(); ?>
         </div>
+
+        <?php if ($meta['toc'][0]) { ?>
+            <div>
+                <h3>목차</h3>
+                <?php
+                $toc = apply_filters('the_content', $meta['toc'][0]);
+                $toc = str_replace(']]>', ']]&gt;', $toc);
+                echo $toc;
+                ?>
+            </div>
+        <?php } ?>
+
+        <?php if ($meta['book_author_intro'][0]) { ?>
+            <div>
+                <h3>저자 소개</h3>
+                <?php
+                $book_author_intro = apply_filters('the_content', $meta['book_author_intro'][0]);
+                $book_author_intro = str_replace(']]>', ']]&gt;', $book_author_intro);
+                echo $book_author_intro;
+                ?>
+            </div>
+        <?php } ?>
+
+        <?php if ($meta['book_translator_intro'][0]) { ?>
+            <div>
+                <h3>역자 소개</h3>
+                <?php
+                $book_translator_intro = apply_filters('the_content', $meta['book_translator_intro'][0]);
+                $book_translator_intro = str_replace(']]>', ']]&gt;', $book_translator_intro);
+                echo $book_translator_intro;
+                ?>
+            </div>
+        <?php } ?>
+
+
     </article>
 
 
