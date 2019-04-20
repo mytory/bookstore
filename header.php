@@ -1,7 +1,6 @@
 <html>
 <head>
     <?php wp_head() ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
 </head>
 <body>
 
