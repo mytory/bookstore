@@ -26,18 +26,46 @@ $meta = get_post_meta(get_the_ID());
         </header>
 
         <aside class="margin-bottom">
-            <?php if (!empty($meta['published_date'][0])) { ?>
-                <?= $meta['published_date'][0] ?> 발행 |
-            <?php } ?>
-            <?php if (!empty($meta['pages'][0])) { ?>
-                <?= $meta['pages'][0] ?> |
-            <?php } ?>
-            <?php if (!empty($meta['price'][0])) { ?>
-                <?= number_format($meta['price'][0]) ?> |
-            <?php } ?>
-            <?php if (!empty($meta['isbn'][0])) { ?>
-                <?= $meta['isbn'][0] ?>
-            <?php } ?>
+
+            <div>
+                <?php
+                $book_authors = wp_get_post_terms(get_the_ID(), 'book_author');
+
+                if (count($book_authors)) {
+                    $array = [];
+                    foreach ($book_authors as $book_author) {
+                        $array[] = $book_author->name;
+                    }
+                    echo implode(', ', $array) . ' 지음';
+                }
+
+                $book_translators = wp_get_post_terms(get_the_ID(), 'book_translator');
+                if (count($book_translators)) {
+                    $array = [];
+                    foreach ($book_translators as $book_translator) {
+                        $array[] = $book_translator->name;
+                    }
+                    echo implode(', ', $array) . ' 번역';
+                }
+                ?>
+
+
+            </div>
+
+            <div>
+                <?php if (!empty($meta['published_date'][0])) { ?>
+                    <?= $meta['published_date'][0] ?> 발행 |
+                <?php } ?>
+                <?php if (!empty($meta['pages'][0])) { ?>
+                    <?= $meta['pages'][0] ?> |
+                <?php } ?>
+                <?php if (!empty($meta['price'][0])) { ?>
+                    <?= number_format($meta['price'][0]) ?> |
+                <?php } ?>
+                <?php if (!empty($meta['isbn'][0])) { ?>
+                    <?= $meta['isbn'][0] ?>
+                <?php } ?>
+            </div>
         </aside>
 
         <div class="book-cover-container">
