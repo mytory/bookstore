@@ -8,3 +8,4 @@ include 'functions-enqueue-scripts.php';
 include 'functions-manage-columns.php';
 include 'functions-helper.php';
 include 'MytoryImportBooks.php';
+include 'template-tags.php';

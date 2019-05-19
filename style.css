@@ -104,3 +104,19 @@ a:hover {
 .margin-bottom {
     margin-bottom: 1rem;
 }
+
+/* nav */
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item:not(:last-child):after {
+    content: '|';
+    padding-left: .5em;
+    padding-right: .5em;
+    color: #888;
+    font-size: 0.8em;
+}
