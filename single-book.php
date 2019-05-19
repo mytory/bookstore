@@ -27,30 +27,30 @@ $meta = get_post_meta(get_the_ID());
 
         <aside class="margin-bottom">
 
-            <div>
-                <?php
-                $book_authors = wp_get_post_terms(get_the_ID(), 'book_author');
+            <?php
+            $book_author_string = get_term_names('book_author', ' 지음');
+            $book_translator_string = get_term_names('book_translator', ' 번역');
+            $book_publisher_string = get_term_names('book_publisher');
+            $book_subject_string = get_term_names('book_subject');
+            ?>
 
-                if (count($book_authors)) {
-                    $array = [];
-                    foreach ($book_authors as $book_author) {
-                        $array[] = $book_author->name;
-                    }
-                    echo implode(', ', $array) . ' 지음';
-                }
+            <ul class="nav">
+                <?php if ($book_author_string) { ?>
+                    <li class="nav-item"><?= $book_author_string ?></li>
+                <?php } ?>
 
-                $book_translators = wp_get_post_terms(get_the_ID(), 'book_translator');
-                if (count($book_translators)) {
-                    $array = [];
-                    foreach ($book_translators as $book_translator) {
-                        $array[] = $book_translator->name;
-                    }
-                    echo implode(', ', $array) . ' 번역';
-                }
-                ?>
+                <?php if ($book_translator_string) { ?>
+                    <li class="nav-item"><?= $book_translator_string ?></li>
+                <?php } ?>
 
+                <?php if ($book_publisher_string) { ?>
+                    <li class="nav-item"><?= $book_publisher_string ?></li>
+                <?php } ?>
 
-            </div>
+                <?php if ($book_subject_string) { ?>
+                    <li class="nav-item"><?= $book_subject_string ?></li>
+                <?php } ?>
+            </ul>
 
             <div>
                 <?php if (!empty($meta['published_date'][0])) { ?>
