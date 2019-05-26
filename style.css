@@ -29,6 +29,11 @@ a:hover {
     text-decoration: underline;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .wrapper {
     width: 50rem;
     margin-left: auto;
@@ -119,4 +124,10 @@ a:hover {
     padding-right: .5em;
     color: #888;
     font-size: 0.8em;
+}
+
+.screen-reader-text {
+    text-indent: -9999px;
+    width: 1px;
+    height: 1px;
 }

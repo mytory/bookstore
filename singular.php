@@ -4,7 +4,7 @@ get_header();
 the_post();
 ?>
 
-    <article>
+    <article class="wrapper">
         <header>
             <h1><?php the_title(); ?></h1>
         </header>
