@@ -167,3 +167,29 @@ img {
     font-size: 0.8em;
     color: gray;
 }
+
+
+/* pagination */
+.page-numbers {
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 33px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.page-numbers.current, a.page-numbers:hover {
+    background-color: #eee;
+    color: black;
+    text-decoration: none;
+}
+
+
+/* utilities */
+.text-center {
+    text-align: center;
+}
+
+.padding {
+    padding: 1.5em;
+}

@@ -29,6 +29,10 @@
         } ?>
     </ul>
 
+    <div class="text-center  padding">
+        <?= paginate_links() ?>
+    </div>
+
 </div>
 
 <?php get_footer() ?>
