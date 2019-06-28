@@ -186,6 +186,34 @@ img {
 }
 
 
+/* img */
+.alignnone, .aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 1.5rem;
+}
+
+.alignright {
+    float: right;
+    margin-left: 1.5rem;
+}
+
+.wp-caption img {
+    width: 100%;
+}
+
+.wp-caption-text {
+    border: 1px solid #ddd;
+    margin-top: 0;
+    padding: 0.5rem;
+    color: gray;
+}
+
 /* utilities */
 .text-center {
     text-align: center;
