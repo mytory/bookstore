@@ -1,7 +1,9 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
 
 <div class="wrapper">
+
+    <h1><?= get_the_archive_title() ?></h1>
 
     <ul class="basic-list">
         <?php
