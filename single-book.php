@@ -77,10 +77,18 @@ $meta = get_post_meta(get_the_ID());
 
         <div>
             <h3>책 소개</h3>
-            <?php the_content(); ?>
+            <?php
+            if (empty(get_the_content())) {
+                ?>
+                <p>책 소개가 아직 입력돼 있지 않습니다.</p>
+                <?php
+            } else {
+                the_content();
+            }
+            ?>
         </div>
 
-        <?php if ($meta['toc'][0]) { ?>
+        <?php if (!empty($meta['toc'][0])) { ?>
             <div>
                 <h3>목차</h3>
                 <?php
@@ -91,7 +99,7 @@ $meta = get_post_meta(get_the_ID());
             </div>
         <?php } ?>
 
-        <?php if ($meta['book_author_intro'][0]) { ?>
+        <?php if (!empty($meta['book_author_intro'][0])) { ?>
             <div>
                 <h3>저자 소개</h3>
                 <?php
@@ -102,7 +110,7 @@ $meta = get_post_meta(get_the_ID());
             </div>
         <?php } ?>
 
-        <?php if ($meta['book_translator_intro'][0]) { ?>
+        <?php if (!empty($meta['book_translator_intro'][0])) { ?>
             <div>
                 <h3>역자 소개</h3>
                 <?php
