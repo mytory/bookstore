@@ -143,6 +143,13 @@ img {
     padding: .5em;
 }
 
+.basic-list-link:after {
+    content: "";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
 .basic-list-link:hover {
     text-decoration: none;
     background-color: #eee;
@@ -218,6 +225,16 @@ img {
 .size-post-thumbnail {
     width: 150px;
     height: auto;
+}
+
+.size-book-cover {
+    width: 150px;
+    height: auto;
+}
+
+.list-thumb {
+    float: left;
+    margin-right: 1.5rem;
 }
 
 .list-thumb-right {

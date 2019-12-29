@@ -200,6 +200,7 @@ class MytoryImportBooks
 
             $attachment_id = crb_insert_attachment_from_url($cover_url, "{$book->isbn}.jpg", $post_id);
             update_post_meta($post_id, 'cover_id', $attachment_id);
+            set_post_thumbnail($post_id, $attachment_id);
         } catch (\Exception $e) {
             throw $e;
         }
