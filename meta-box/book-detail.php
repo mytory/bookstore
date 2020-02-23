@@ -33,7 +33,7 @@
     <th><label for="pages">페이지수</label></th>
     <td>
         <input type="tel" name="meta[pages]" id="pages" class="small-text"
-               value="<?= esc_attr(get_post_meta(get_the_ID(), 'pages', true)) ?>"
+               value="<?= esc_attr( get_post_meta( get_the_ID(), 'pages', true ) ) ?>"
                pattern="[0-9]+" title="숫자로만 적어 주세요">
     </td>
 </tr>
@@ -41,7 +41,23 @@
     <th><label for="isbn">ISBN</label></th>
     <td>
         <input type="text" name="meta[isbn]" id="isbn" class="regular-text"
-               value="<?= esc_attr(get_post_meta(get_the_ID(), 'isbn', true)) ?>">
+               value="<?= esc_attr( get_post_meta( get_the_ID(), 'isbn', true ) ) ?>">
+    </td>
+</tr>
+<tr>
+    <th>추천 책 여부</th>
+    <td>
+        <label style="margin-right: 1em;">
+            <input type="radio" name="meta[is_recommended]" value="1"
+				<?= ( get_post_meta( get_the_ID(), 'is_recommended', true ) ) ? 'checked' : '' ?>>
+            예
+        </label>
+
+        <label>
+            <input type="radio" name="meta[is_recommended]" value="0"
+				<?= ( ! get_post_meta( get_the_ID(), 'is_recommended', true ) ) ? 'checked' : '' ?>>
+            아니오
+        </label>
     </td>
 </tr>
 </tbody>
