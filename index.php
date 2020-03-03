@@ -1,4 +1,10 @@
-<?php get_header() ?>
+<?php
+get_header();
+
+$wp_query = new WP_Query([
+    'post_type' => 'book',
+]);
+?>
 
 
 <div class="wrapper">
