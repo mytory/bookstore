@@ -242,6 +242,14 @@ img {
     margin-left: 1.5rem;
 }
 
+/* layout */
+.layout-2-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+
 /* utilities */
 .text-center {
     text-align: center;
