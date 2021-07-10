@@ -7,6 +7,9 @@ $notice_query = new WP_Query( [
 ] );
 
 $new_book_query = new WP_Query( [
+    'meta_key'       => 'published_date',
+	'orderby'        => 'meta_value',
+	'order'          => 'DESC',
 	'post_type'      => 'book',
 	'posts_per_page' => 5,
 ] );
