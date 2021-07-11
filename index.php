@@ -13,6 +13,20 @@ $new_book_query = new WP_Query( [
 	'post_type'      => 'book',
 	'posts_per_page' => 5,
 ] );
+
+$mytory_books_query = new WP_Query( [
+    'post_type' => 'book',
+    'tax_query' => [
+        [
+            'taxonomy' => 'book_publisher',
+            'field' => 'slug',
+            'terms' => 'mytory북스',
+        ]
+    ],
+    'posts_per_page' => 5,
+    'meta_key'       => 'published_date',
+    'orderby'        => 'meta_value',
+] );
 ?>
 <div class="wrapper">
     <div class="layout-2-column">
@@ -51,6 +65,25 @@ $new_book_query = new WP_Query( [
 			        }
 			        wp_reset_postdata();
 		        } ?>
+            </ul>
+        </div>
+
+        <div class="layout-item">
+            <h2>Mytory북스의 책들</h2>
+            <ul>
+			    <?php
+			    if ( $mytory_books_query->have_posts() ) {
+				    while ( $mytory_books_query->have_posts() ) {
+					    $mytory_books_query->the_post(); ?>
+                        <li>
+                            <a href="<?php the_permalink() ?>">
+							    <?php the_title(); ?>
+                            </a>
+                        </li>
+					    <?php
+				    }
+				    wp_reset_postdata();
+			    } ?>
             </ul>
         </div>
     </div>
