@@ -248,3 +248,24 @@ img {
 .margin-bottom {
     margin-bottom: 1.5rem;
 }
+
+/* main-slider */
+.swiper-slide {
+    color: white;
+}
+.main-slide-1 {
+    background-color: #264653;
+}
+.main-slide-2 {
+    background-color: #2a9d8f;
+}
+.main-slide-3 {
+    background-color: #e9c46a;
+    color: black;
+}
+.main-slide-4 {
+    background-color: #f4a261;
+}
+.main-slide-5 {
+    background-color: #e76f51;
+}
