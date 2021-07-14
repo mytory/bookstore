@@ -29,7 +29,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		get_template_directory_uri() . '/css/normalize.min.css',
 		[],
 		'8.0.1'
-	 );
+	);
 
 	if ( is_home() ) {
 		wp_enqueue_script(
@@ -37,6 +37,14 @@ add_action( 'wp_enqueue_scripts', function () {
 			get_template_directory_uri() . '/js-lib/swiperjs/swiper-bundle.min.js',
 			[],
 			'6.7.5',
+			true
+		);
+
+		wp_enqueue_script(
+			'main-slider',
+			get_template_directory_uri() . '/js/main-slider.js',
+			[ 'swiperjs' ],
+			'1.0',
 			true
 		);
 
