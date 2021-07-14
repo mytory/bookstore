@@ -21,7 +21,16 @@ add_action( 'admin_enqueue_scripts', function () {
 	);
 } );
 
+
 add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_style( 'mbs-style', get_template_directory_uri() . '/css/app.css', [ 'mbs-normalize' ] );
+	wp_enqueue_style(
+		'mbs-normalize',
+		get_template_directory_uri() . '/css/normalize.min.css',
+		[],
+		'8.0.1'
+	 );
+
 	if ( is_home() ) {
 		wp_enqueue_script(
 			'swiperjs',
