@@ -49,3 +49,18 @@ function crb_insert_attachment_from_url($url, $filename = '', $parent_post_id = 
     wp_update_attachment_metadata( $attach_id,  $attach_data );
     return $attach_id;
 }
+
+/**
+ * 1 썸네일이 있으면 그걸 쓴다.
+ * 2 썸네일이 없으면 표지를 쓴다.
+ * @return false|int|mixed
+ */
+function get_cover_id() {
+	if ( has_post_thumbnail() ) {
+		$cover_id = get_post_thumbnail_id();
+	} else {
+		$cover_id = get_post_meta( get_the_ID(), 'cover_id', true );
+	}
+
+	return $cover_id;
+}

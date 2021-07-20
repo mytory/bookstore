@@ -5,7 +5,6 @@ html {
 }
 
 
-
 a {
     color: black;
     text-decoration: none;
@@ -253,19 +252,49 @@ img {
 .swiper-slide {
     color: white;
 }
+
 .main-slide-1 {
     background-color: #264653;
 }
+
 .main-slide-2 {
     background-color: #2a9d8f;
 }
+
 .main-slide-3 {
     background-color: #e9c46a;
     color: black;
 }
+
 .main-slide-4 {
     background-color: #f4a261;
 }
+
 .main-slide-5 {
     background-color: #e76f51;
+}
+
+.main-slide-content-wrapper {
+    color: inherit;
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.main-slide-cover {
+    width: 30%;
+    float: right;
+}
+
+.main-slide-content {
+    width: 50%;
+    float: left;
+}
+
+.main-slide-content h1 {
+    font-weight: normal;
+    font-size: 3rem;
 }
