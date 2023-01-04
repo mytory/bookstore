@@ -6,9 +6,13 @@
 
 <div>
     <div class="wrapper">
-        <?php if (function_exists('the_custom_logo')) {
-            the_custom_logo();
-        } ?>
+        <div class="space-between-wrapper">
+            <?php if (function_exists('the_custom_logo')) {
+                the_custom_logo();
+            } ?>
+
+            <?php get_search_form() ?>
+        </div>
     </div>
 
     <nav class="nav-bg">

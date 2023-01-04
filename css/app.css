@@ -32,6 +32,12 @@ img {
     height: 150px;
 }
 
+.space-between-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
 /* main-navigation */
 .nav-bg {
     background-color: #2ECC71;
