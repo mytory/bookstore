@@ -261,6 +261,10 @@ img {
     margin-bottom: 1.5rem;
 }
 
+.margin-bottom-none {
+    margin-bottom: 0;
+}
+
 /* main-slider */
 .swiper-slide {
     color: white;
